@@ -14,8 +14,7 @@ const promisifiedQuery = promisify(connection.query).bind(connection);
 
 const runQuery = async () => {
     try {
-
-        let data = await promisifiedQuery('SELECT email FROM users');
+        let data = await promisifiedQuery('SELECT COUNT(*) AS total FROM users');
         return(data);
     } catch (error) {
         console.log(error.sqlMessage);
@@ -25,10 +24,9 @@ const runQuery = async () => {
 
 const addEmail = async (email) => {
     try {
-
         const queryStringAdd = `INSERT INTO users(email) VALUES ('${email}')`;
         let data = await promisifiedQuery(queryStringAdd);
-        return data;
+        // return (data);
     } catch (error) {
         return(error.sqlMessage);
     }
@@ -42,7 +40,7 @@ const addEmail = async (email) => {
 //     return people;
 // };
 
-addEmail();
+runQuery();
 
 module.exports = {
     runQuery,
