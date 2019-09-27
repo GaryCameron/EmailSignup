@@ -16,7 +16,7 @@ button.addEventListener("click", () => {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-    email: input.value
+      email: input.value
     })
   });
 
